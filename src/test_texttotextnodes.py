@@ -1,5 +1,5 @@
 import unittest
-from splitnodedeslimiter import text_to_textnodes
+from texttotextnode import text_to_textnodes
 from textnode import TextNode, TextType
 
 class Test_TexttoTextnodes(unittest.TestCase):
