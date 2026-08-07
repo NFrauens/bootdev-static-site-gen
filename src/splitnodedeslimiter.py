@@ -86,3 +86,22 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
         if original_text != "":
             new_nodes.append(TextNode(original_text, TextType.TEXT))
     return new_nodes
+
+def text_to_textnodes(text):
+    old_text = TextNode(text, TextType.TEXT)
+    bold_delim = split_nodes_delimiter([old_text], "**", TextType.BOLD)
+    italic_delim = split_nodes_delimiter(bold_delim, "_", TextType.ITALIC)
+    code_delim = split_nodes_delimiter(italic_delim, "`", TextType.CODE)
+    s_img = split_nodes_image(code_delim)
+    s_link = split_nodes_link(s_img)
+    return s_link
+
+def markdown_to_blocks(markdown):
+    new_text = []
+    split_text = markdown.split("\n\n")
+    for text in split_text:
+        stripped_text = text.strip()
+        if stripped_text == "":
+            continue
+        new_text.append(stripped_text)
+    return new_text
