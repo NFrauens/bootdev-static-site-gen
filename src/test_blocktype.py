@@ -1,5 +1,5 @@
 import unittest
-from textnode import BlockType, block_to_block_type
+from blocktype import BlockType, block_to_block_type
 
 class test_block_to_blocktype(unittest.TestCase):
     def test_heading(self):

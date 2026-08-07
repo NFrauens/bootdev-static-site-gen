@@ -95,13 +95,3 @@ def text_to_textnodes(text):
     s_img = split_nodes_image(code_delim)
     s_link = split_nodes_link(s_img)
     return s_link
-
-def markdown_to_blocks(markdown):
-    new_text = []
-    split_text = markdown.split("\n\n")
-    for text in split_text:
-        stripped_text = text.strip()
-        if stripped_text == "":
-            continue
-        new_text.append(stripped_text)
-    return new_text
