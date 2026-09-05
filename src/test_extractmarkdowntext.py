@@ -1,4 +1,4 @@
-from splitnodedeslimiter import extract_markdown_images, extract_markdown_links
+from splitnodedelimiter import extract_markdown_images, extract_markdown_links
 import unittest
 
 class markdownextract_test(unittest.TestCase):

@@ -87,11 +87,10 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(TextNode(original_text, TextType.TEXT))
     return new_nodes
 
-def text_to_textnodes(text):
-    old_text = TextNode(text, TextType.TEXT)
-    bold_delim = split_nodes_delimiter([old_text], "**", TextType.BOLD)
-    italic_delim = split_nodes_delimiter(bold_delim, "_", TextType.ITALIC)
-    code_delim = split_nodes_delimiter(italic_delim, "`", TextType.CODE)
-    s_img = split_nodes_image(code_delim)
-    s_link = split_nodes_link(s_img)
-    return s_link
+def extract_title(markdown) -> str:
+    split_markdown = markdown.split("\n")
+    for line in split_markdown:
+        if line.startswith("# "):
+            return (line.replace("#", "")).strip()
+        continue
+    raise Exception ("no h1 header found")
