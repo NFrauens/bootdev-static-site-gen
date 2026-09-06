@@ -91,6 +91,5 @@ def extract_title(markdown) -> str:
     split_markdown = markdown.split("\n")
     for line in split_markdown:
         if line.startswith("# "):
-            return (line.replace("#", "")).strip()
-        continue
+            return (line[2:]).strip()
     raise Exception ("no h1 header found")
