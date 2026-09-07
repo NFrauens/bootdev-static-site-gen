@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 from textnode import TextNode, TextType
 from generatepage import generate_pages_recursive
 
@@ -16,9 +17,12 @@ def recursive_copy(to_path: str, from_path: str):
         recursive_copy(new_copy_to_path, new_copy_from_path)
 
 def main():
-    shutil.rmtree("./public", ignore_errors=True)
-    os.mkdir("./public")
-    recursive_copy("./public", "./static")
-    generate_pages_recursive("./content", "./template.html", "./public")
+    basepath = "/"
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+    shutil.rmtree("./docs", ignore_errors=True)
+    os.mkdir("./docs")
+    recursive_copy("./docs", "./static")
+    generate_pages_recursive("./content", "./template.html", "./docs", basepath)
 
 main()
